@@ -1,17 +1,17 @@
 /*
     ******************************************************************************************
-    **  COMPUTA«√O GR¡FICA 2023 - 1                                                         **
+    **  COMPUTA√á√ÉO GR√ÅFICA 2023 - 1                                                         **
     **  DOCENTE: ADAILTON JOSE ALVES DA CRUZ                                                **
     **  DISCENTE: FELIPE EMANUEL FERREIRA                           RGA: 20200712175441     **
     **  EMAIL: felipe.ferreira035@academico.ufgd.edu.br                                     **
     **                                                                                      **
-    **  AVALIA«√O 2:                                                                        **
+    **  AVALIA√á√ÉO 2:                                                                        **
     **  O PROJETO CONSISTE NO USO DAS BIBLIOTECAS FREEGLUT E OPENGL PARA A MODELAGEM 3D     **
     **  DE UM ROBO HUMANOIDE, CAPAZ DE ANDAR E GESTICULAR UTILIZANDO EVENTOS DE TECLADO.    **
     **                                                                                      **
-    **  O PROJETO … DIVIDIDO EM ARQUIVOS, A MAIN.CPP QUE CONT…M AS CALLBACKS E A CRIA«√O    **
-    **  O MODELOS.H CONT…M AS FUN«’ES DE MODELAGEM DO ROBO E MOVIMENTOS.H CONT…M AS FUN«’ES **
-    **  RESPONS¡VEL POR MOVER CADA PARTE DO ROBO.                                           **
+    **  O PROJETO √â DIVIDIDO EM ARQUIVOS, A MAIN.CPP QUE CONT√âM AS CALLBACKS E A CRIA√á√ÉO    **
+    **  O MODELOS.H CONT√âM AS FUN√á√ïES DE MODELAGEM DO ROBO E MOVIMENTOS.H CONT√âM AS FUN√á√ïES **
+    **  RESPONS√ÅVEL POR MOVER CADA PARTE DO ROBO.                                           **
     ******************************************************************************************
 */
 #include <GL/glut.h>
@@ -22,26 +22,26 @@
 
 void Resize(int w, int h)
 {
-	glMatrixMode(GL_PROJECTION); // SELECIONA MATRIZ DE PROJE«√O
+	glMatrixMode(GL_PROJECTION); // SELECIONA MATRIZ DE PROJE√á√ÉO
 	glLoadIdentity(); // CARREGA A MATRIZ IDENTIDADE (RESETA A MATRIZ)
-	gluPerspective(45.0, (GLdouble) w/h, 1.0, 100.0); // TRANSFORMA«√O DA PERSPECTIVA (FOV, ASPECT, NEAR, FAR)
+	gluPerspective(45.0, (GLdouble) w/h, 1.0, 100.0); // TRANSFORMA√á√ÉO DA PERSPECTIVA (FOV, ASPECT, NEAR, FAR)
 
 	/*
-	MATRIZ DE PROJE«√O:
+	MATRIZ DE PROJE√á√ÉO:
 
-	| 1 / (aspect * tan(fov/2))   0                 0                              0                             |
+    | 1 / (aspect * tan(fov/2))   0                 0                              0                             |
     | 0                           1 / tan(fov/2)    0                              0                             |
     | 0                           0                -(Far + Near) / (Far - Near)  -(2 * Far * Near) / (Far - Near)|
     | 0                           0                -1                              0                             |
 
 
-	       |1.81     0       0            0|
+	   |1.81     0       0            0|
     PROJ = |0        0.41    0            0|
            |0        0      -1.02     -2.02|
            |0        0       -1           0|
 	*/
 	glMatrixMode(GL_MODELVIEW); // SELECIONA A MATRIZ MODELVIEW
-	glViewport(0, 0, w, h); // DEFINE A VIEW PORT NA JANELA DE INTERA«√O COMO A TELA TODA
+	glViewport(0, 0, w, h); // DEFINE A VIEW PORT NA JANELA DE INTERA√á√ÉO COMO A TELA TODA
 }
 
 void display()
@@ -49,8 +49,8 @@ void display()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //LIMPA A TELA
     glLoadIdentity(); //CARREGA IDENTIDADE DA MODELVIEW
     // Set camera position
-    gluLookAt(  10.0, 20.0, 30 - base_mov[Z], //POSI«√O DA CAMERA (EYE)
-                0.0, 0.0, base_mov[Z], //DIRE«√O QUE EST¡ OLHANDO (CENTER)
+    gluLookAt(  10.0, 20.0, 30 - base_mov[Z], //POSI√á√ÉO DA CAMERA (EYE)
+                0.0, 0.0, base_mov[Z], //DIRE√á√ÉO QUE EST√Å OLHANDO (CENTER)
                 0.0, 1.0, 0.0); //UP
     /*
     PARA O CASO INICIAL TEMOS QUE:
@@ -75,12 +75,12 @@ void display()
                       |0        0       0           1|
 
 
-    A MATRIZ MODELVIEW … UTILIZADA PARA MAPEAR OS OBJETOS DA CENA
-    COM AS COORDENADAS DA CAMERA, ELA … DADA POR:
+    A MATRIZ MODELVIEW √â UTILIZADA PARA MAPEAR OS OBJETOS DA CENA
+    COM AS COORDENADAS DA CAMERA, ELA √â DADA POR:
 
     Mview = Lat x Mobj
 
-    ONDE Mobj … A MATRIZ RESULTANTE DE TODAS AS TRANSFORMA«’ES NO SRU
+    ONDE Mobj √â A MATRIZ RESULTANTE DE TODAS AS TRANSFORMA√á√ïES NO SRU
 
              |-0.95    0      -0.32         0|
     Mview =  |-0.17    0.85    0.51         0|
@@ -89,8 +89,8 @@ void display()
     */
 
     glPushMatrix();
-    //UM TRANSLATE PARA DESENHAR O CH√O
-    //O CH√O DEVE FICAR ABAIXO DO ROBO
+    //UM TRANSLATE PARA DESENHAR O CH√ÉO
+    //O CH√ÉO DEVE FICAR ABAIXO DO ROBO
         glTranslatef(0.0, -1.42*TAM_PERNA, 0.0);
         /*
             |1  0   0        0|
@@ -98,7 +98,7 @@ void display()
             |0  0   1        0|
             |0  0   0        1|
         */
-        DesenhaChao(); //DESENHA O CH√O
+        DesenhaChao(); //DESENHA O CH√ÉO
     glPopMatrix();
 
     Desenha_Modelo(); //DESENHA O ROBO
@@ -107,7 +107,7 @@ void display()
 
 
 //CALLBACK DOS EVENTOS DE TECLADO
-//AS FUN«’ES EST√O DETALHADAS NO ARQUIVO MOVIMENTOS.H
+//AS FUN√á√ïES EST√ÉO DETALHADAS NO ARQUIVO MOVIMENTOS.H
 void teclado(unsigned char key, int x, int y)
 {
 
@@ -135,10 +135,10 @@ void teclado(unsigned char key, int x, int y)
         case 'E': case 'e': //SELECIONA MEMBRO DIREITO
             lado_gest = DIREITO;
             break;
-        case 'C': case 'c': //SELECIONA A CABE«A
+        case 'C': case 'c': //SELECIONA A CABE√áA
             membro = CABECA;
             break;
-        case 'B': case 'b': //SELECIONA O BRA«O
+        case 'B': case 'b': //SELECIONA O BRA√áO
             membro = BRACO;
             break;
         case 'P': case 'p': //SELECIONA A PERNA
@@ -147,7 +147,7 @@ void teclado(unsigned char key, int x, int y)
         case 'R': case 'r':
             membro = CORPO;
             break;
-        default: //CHAMA AS FUN«’ES PARA MOVIMENTAR OS MEMBROS OU O ROBO
+        default: //CHAMA AS FUN√á√ïES PARA MOVIMENTAR OS MEMBROS OU O ROBO
             if(modo == GESTICULAR)
                 switch(membro)
                 {
@@ -169,9 +169,9 @@ void teclado(unsigned char key, int x, int y)
     }
 }
 
-//FUN«√O PARA UTILIZAR AS SETAS
-//FUN«’ES DETALHADAS NO ARQUIVO MOVIMENTOS.H
-//AS SETAS S√O UTILIZADS PARA MOVER A PARTE DE CIMA DOS BRA«OS E PERNAS
+//FUN√á√ÉO PARA UTILIZAR AS SETAS
+//FUN√á√ïES DETALHADAS NO ARQUIVO MOVIMENTOS.H
+//AS SETAS S√ÉO UTILIZADS PARA MOVER A PARTE DE CIMA DOS BRA√áOS E PERNAS
 void teclasEspeciais(int key, int x, int y)
 {
     if(modo == GESTICULAR)
@@ -186,7 +186,7 @@ void teclasEspeciais(int key, int x, int y)
         }
 }
 
-//MANT…M A CENA ATUALIZADA
+//MANT√âM A CENA ATUALIZADA
 void update(void)
 {
     glutPostRedisplay();
@@ -219,7 +219,7 @@ void imprimeMenu(void)
     printf("S(SEGURAR) - ANDAR P/ TRAS");
 }
 
-//FUN«√O MAIN
+//FUN√á√ÉO MAIN
 int main(int argc, char** argv)
 {
     imprimeMenu();
